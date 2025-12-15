@@ -1,0 +1,91 @@
+/* src/styles.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  color-scheme: light dark;
+  font-family:
+    "Inter",
+    system-ui,
+    sans-serif;
+  background-color: #0f1115;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      #1b2130,
+      #0d1117);
+  color: #f7fafc;
+}
+@layer base {
+  ::selection {
+    background-color: #f97316;
+    color: #0f1115;
+  }
+}
+@layer components {
+  .board-grid {
+    display: grid;
+    user-select: none;
+    touch-action: manipulation;
+    background: #f7f2ed;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.08), 0 25px 70px rgba(15, 23, 42, 0.35);
+  }
+  .stone::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 999px;
+    border: 1px solid rgba(249, 115, 22, 0.0);
+    transition: border-color 0.2s ease;
+  }
+  .stone--last::after {
+    border-color: rgba(14, 165, 233, 0.7);
+  }
+  .stone--hint {
+    box-shadow: inset 0 0 0 2px rgba(14, 165, 233, 0.6);
+  }
+  .tile {
+    position: relative;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.7),
+        rgba(244, 244, 244, 0.6));
+    transition:
+      background 120ms ease,
+      transform 120ms ease,
+      box-shadow 120ms ease;
+  }
+  .tile:focus-visible {
+    outline: 3px solid rgba(14, 165, 233, 0.9);
+    outline-offset: -3px;
+  }
+  .tile:hover {
+    background: rgba(253, 186, 116, 0.4);
+  }
+  .tile--high-contrast {
+    border-color: rgba(46, 16, 101, 0.45);
+    background: rgba(255, 255, 255, 0.85);
+  }
+  .winning-glow {
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.7);
+  }
+  .ripple {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background:
+      radial-gradient(
+        circle,
+        rgba(14, 165, 233, 0.6) 0%,
+        rgba(14, 165, 233, 0) 65%);
+    pointer-events: none;
+  }
+}
